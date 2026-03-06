@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Stack;
 
 public class PalindromeCheckerApp {
 
@@ -9,24 +10,24 @@ public class PalindromeCheckerApp {
         System.out.print("Enter a string: ");
         String word = sc.nextLine();
 
-        // Convert string to character array
-        char[] characters = word.toCharArray();
+        Stack<Character> stack = new Stack<>();
 
-        int start = 0;
-        int end = characters.length - 1;
+        // Push characters into stack
+        for(int i = 0; i < word.length(); i++) {
+            stack.push(word.charAt(i));
+        }
 
         boolean isPalindrome = true;
 
-        // Two pointer comparison
-        while(start < end) {
+        // Pop and compare
+        for(int i = 0; i < word.length(); i++) {
 
-            if(characters[start] != characters[end]) {
+            char popped = stack.pop();
+
+            if(word.charAt(i) != popped) {
                 isPalindrome = false;
                 break;
             }
-
-            start++;
-            end--;
         }
 
         if(isPalindrome) {
